@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="column">
+    <h4>Total Games: {{model.collectionItems.length}}</h4>
+    <div>For users:
+      {{#each model.users as |user index|}}
+        {{if index ", "}}{{user}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    {{#each model.collectionItems as |item|}}
+      {{collection-item game=item}}
+    {{/each}}
+  </div>
+</div>
