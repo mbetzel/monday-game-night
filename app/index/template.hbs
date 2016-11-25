@@ -1,9 +1,11 @@
+{{filter-games onFilter=(action 'setFilterOnModel')}}
+
 <div class="row">
   <div class="column">
     <h4>Total Games: {{model.collectionItems.length}}</h4>
     <div>For users:
       {{#each model.users as |user index|}}
-        {{if index ", "}}{{user}}
+        {{#if index}},{{/if}} {{user}}
       {{/each}}
     </div>
   </div>

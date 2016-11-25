@@ -2,6 +2,10 @@
   <img src="{{gameImage}}" class="{{componentCssClassName}}__image" />
   <div class="{{componentCssClassName}}__info">
     <h4>{{gameName}}</h4>
-    Players: {{minPlayers}}-{{maxPlayers}}
+    {{#if staticNumberOfPlayers}}
+      Players: {{minPlayers}}
+    {{else}}
+      Players: {{minPlayers}}-{{maxPlayers}}
+    {{/if}}
   </div>
 </div>

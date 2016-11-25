@@ -6,33 +6,40 @@ export const USERS = ['Deliverator', 'Aramd', 'seehafma'];
 export default Ember.Service.extend({
   ajax: Ember.inject.service(),
 
+  originalState: null,
+
+  state: null,
+
+  applyFilter(numberOfPlayers) {
+    const newState = this.get('originalState').reduce((games, item) => {
+      if (item.minplayers <= numberOfPlayers && item.maxplayers >= numberOfPlayers) {
+        return games.concat([item]);
+      } else {
+        return games;
+      }
+    }, []);
+
+    this.set('state', _.cloneDeep(newState));
+  },
+
   fetchFromBGG(path) {
     return this.get('ajax').request(path);
   },
 
-  fetchCollections() {
+  fetchState() {
+    const state = this.get('state');
+
+    if (this.get('state') != null) {
+      return Ember.RSVP.resolve(state)
+    }
+
     const usersString = USERS.join(';');
-    return this.fetchFromBGG(`${BASE_PATH}/collections/${usersString}`);
+
+    return this.fetchFromBGG(`${BASE_PATH}/collections/${usersString}`)
+      .then(results => {
+        this.set('originalState', results);
+        this.set('state', _.cloneDeep(results));
+        return this.get('state');
+      });
   }
-
-  // fetchCollection() {
-  //   const promises = USERS.map(user => {
-  //     return this.fetchFromBGG(`${BASE_PATH}/collection/${user}`);
-  //   });
-
-  //   return Ember.RSVP.all(promises)
-  //     .then(collections => {
-  //       return collections.reduce((allItems, collection) => {
-  //         return allItems.concat(collection.items.item);
-  //       }, []);
-  //     });
-  // },
-
-  // fetchGamesFromCollection(collectionItems) {
-  //   return Ember.RSVP.all(collectionItems.map(collectionItem => this.fetchGame(collectionItem.objectid)));
-  // },
-
-  // fetchGame(gameId) {
-  //   return this.fetchFromBGG(`${BASE_PATH}/thing/${gameId}`);
-  // }
 });

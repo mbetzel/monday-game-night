@@ -13,4 +13,6 @@ export default Ember.Component.extend({
   minPlayers: Ember.computed.readOnly('game.minplayers'),
 
   maxPlayers: Ember.computed.readOnly('game.maxplayers'),
+
+  staticNumberOfPlayers: Ember.computed.equal('game.minplayers', 'game.maxplayers'),
 });

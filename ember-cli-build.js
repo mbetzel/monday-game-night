@@ -21,6 +21,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/foundation-sites/js/foundation.core.js');
+  app.import('bower_components/lodash/lodash.js');
 
   if (app.env === 'development' || app.env === 'test') {
     app.import('bower_components/FakeXMLHttpRequest/fake_xml_http_request.js');
