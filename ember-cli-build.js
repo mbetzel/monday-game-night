@@ -22,5 +22,11 @@ module.exports = function(defaults) {
 
   app.import('bower_components/foundation-sites/js/foundation.core.js');
 
+  if (app.env === 'development' || app.env === 'test') {
+    app.import('bower_components/FakeXMLHttpRequest/fake_xml_http_request.js');
+    app.import('bower_components/route-recognizer/dist/route-recognizer.js');
+    app.import('bower_components/pretender/pretender.js');
+  }
+
   return app.toTree();
 };

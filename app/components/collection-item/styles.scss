@@ -1,0 +1,15 @@
+&__content {
+  display: flex;
+  min-height: 100px;
+}
+
+&__image {
+  width: 100px;
+  height: 72.5px;
+  flex: 0 1 auto;
+}
+
+&__info {
+  margin-left: 10px;
+  flex: 1 0 auto;
+}

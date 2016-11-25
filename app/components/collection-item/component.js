@@ -6,11 +6,11 @@ export default Ember.Component.extend({
 
   game: null,
 
-  gameName: Ember.computed.readOnly('game.items.item.name.0.value'),
+  gameName: Ember.computed.readOnly('game.name'),
 
-  gameImage: Ember.computed.readOnly('game.items.item.thumbnail'),
+  gameImage: Ember.computed.readOnly('game.thumbnail'),
 
-  minPlayers: Ember.computed.readOnly('game.items.item.minplayers.value'),
+  minPlayers: Ember.computed.readOnly('game.minplayers'),
 
-  maxPlayers: Ember.computed.readOnly('game.items.item.maxplayers.value'),
+  maxPlayers: Ember.computed.readOnly('game.maxplayers'),
 });
